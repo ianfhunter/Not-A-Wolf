@@ -65,7 +65,7 @@ class WolfBot(botlib.Bot):
             one_liner(self,str(active_players));
 
         if botlib.check_on_own(self.data, "!quit") or botlib.check_on_own(self.data, "!q"):
-            active_players[self.get_username()] = False
+            active_players.pop(self.get_username(),None)
             one_liner(self,str(active_players));
 
         if botlib.check_on_own(self.data, "!channel") or botlib.check_on_own(self.data, "!c"):
