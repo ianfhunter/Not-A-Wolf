@@ -4,9 +4,9 @@ import unicodedata
              
 ##
 # command arguments must be:
-#	@BotName
-#	@Server
-#	@Channel to join (no #)
+#    @BotName
+#    @Server
+#    @Channel to join (no #)
 #
 #  python bot.py not_wolf irc.netsoc.tcd.ie werewolf
 #
@@ -14,7 +14,7 @@ import unicodedata
  
 #Param Stuff
 if len(sys.argv) < 4:
-	sys.exit("You do not have the correct amount of Parameters - name,server,channel(no \'#\')")
+    sys.exit("You do not have the correct amount of Parameters - name,server,channel(no \'#\')")
 
 bot_name = sys.argv[1]
 server = sys.argv[2]
@@ -51,10 +51,10 @@ def trigger_word(self,trigger,result,option):
 
 # Create a new class for our bot, extending the Bot class from botlib
 class WolfBot(botlib.Bot):
-	
+    
     def __init__(self, server, channel, nick, password=None):
         botlib.Bot.__init__(self, server, 6667, channel, nick) 
-	
+    
     def __actions__(self):
 
         botlib.Bot.__actions__(self)
@@ -81,9 +81,9 @@ class WolfBot(botlib.Bot):
             one_liner(self, "!v brendan")
         elif botlib.check_on_own(self.data,"You are a seer"):
             oneliner(self, "I'm Seer")
-	    else:
-    		pass
-			
+        else:
+            pass
+            
 if __name__ == "__main__":
     # Create new instance of our bot and run it
     HelloWorldBot(server,start_channel, bot_name).run()
