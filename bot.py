@@ -86,4 +86,4 @@ class WolfBot(botlib.Bot):
             
 if __name__ == "__main__":
     # Create new instance of our bot and run it
-    HelloWorldBot(server,start_channel, bot_name).run()
+    WolfBot(server,start_channel, bot_name).run()
