@@ -7,6 +7,9 @@ import unicodedata
 #	@BotName
 #	@Server
 #	@Channel to join (no #)
+#
+#  python bot.py not_wolf irc.netsoc.tcd.ie werewolf
+#
 ##
  
 #Param Stuff
@@ -79,7 +82,7 @@ class WolfBot(botlib.Bot):
         elif botlib.check_on_own(self.data,"You are a seer"):
             oneliner(self, "I'm Seer")
 	    else:
-		pass
+    		pass
 			
 if __name__ == "__main__":
     # Create new instance of our bot and run it
