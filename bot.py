@@ -62,9 +62,11 @@ class WolfBot(botlib.Bot):
 
         if botlib.check_on_own(self.data, "!join ") or botlib.check_found(self.data, "!j "):
             active_players[self.get_username()] = True
+            one_liner(self,str(active_players));
 
         if botlib.check_on_own(self.data, "!quit ") or botlib.check_found(self.data, "!q "):
             active_players[self.get_username()] = False
+            one_liner(self,str(active_players));
 
         if botlib.check_on_own(self.data, "!channel ") or botlib.check_found(self.data, "!c"):
             channel = self.get_args();
