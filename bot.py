@@ -22,7 +22,7 @@ start_channel = '#' + sys.argv[3]
 
 #Game Variables
 active_players = {}
-
+active_game = False
 
 
 
@@ -49,42 +49,66 @@ def trigger_word(self,trigger,result,option):
             one_liner(self,result)
             
 
+class game():
+    def __init__(self):
+        self.total_players = active_players
+
+    def decide_lynch():
+        return "brendan"
+
+    def decide_kill():
+        return "brendan"
+
+    def decide_see():
+        return "brendan"
+
+    def decide_sex():
+        return "brendan"
+
+
+
 # Create a new class for our bot, extending the Bot class from botlib
 class WolfBot(botlib.Bot):
     
     def __init__(self, server, channel, nick, password=None):
         botlib.Bot.__init__(self, server, 6667, channel, nick) 
-    
+        self.game = None
+
     def __actions__(self):
 
         botlib.Bot.__actions__(self)
         print self.data
 
-        if botlib.check_on_own(self.data, "!join") or botlib.check_on_own(self.data, "!j"):
-            active_players[self.get_username()] = True
-            one_liner(self,str(active_players));
+        if active_game:
+            if botlib.check_on_own(self.data, "!join") or botlib.check_on_own(self.data, "!j"):
+                active_players[self.get_username()] = True
+                one_liner(self,str(active_players));
 
-        if botlib.check_on_own(self.data, "!quit") or botlib.check_on_own(self.data, "!q"):
-            active_players.pop(self.get_username(),None)
-            one_liner(self,str(active_players));
+            if botlib.check_on_own(self.data, "!quit") or botlib.check_on_own(self.data, "!q"):
+                active_players.pop(self.get_username(),None)
+                one_liner(self,str(active_players));
 
-        if botlib.check_on_own(self.data, "!channel") or botlib.check_on_own(self.data, "!c"):
-            channel = self.get_args();
-            if len(channel) == 0:
-                one_liner(self,"Please tell me a channel to go in. I'm not psychic you know!")
-            elif channel[0][0] != '#':
-                one_liner(self,"# plz")
-            else:
-                one_liner(self,"Alrighty")
-                self.protocol.join(channel[0])
-                self.protocol.privmsg(channel[0], "Sup? please blame %s for the proceeding spam!" % self.get_username())
+            if botlib.check_on_own(self.data, "!start") or botlib.check_on_own(self.data, "!q"):
+                self.game = new Game()
+                active_game = True
 
-        elif botlib.check_on_own(self.data, "!lynch"):
-            one_liner(self, "!v brendan")
-        elif botlib.check_on_own(self.data,"You are a seer"):
-            oneliner(self, "I'm Seer")
-        else:
-            pass
+            if botlib.check_on_own(self.data, "!channel") or botlib.check_on_own(self.data, "!c"):
+                channel = self.get_args();
+                if len(channel) == 0:
+                    one_liner(self,"Please tell me a channel to go in. I'm not psychic you know!")
+                elif channel[0][0] != '#':
+                    one_liner(self,"# plz")
+                else:
+                    one_liner(self,"Alrighty")
+                    self.protocol.join(channel[0])
+                    self.protocol.privmsg(channel[0], "Sup? please blame %s for the proceeding spam!" % self.get_username())
+
+        # elif botlib.check_on_own(self.data, "!lynch"):
+        #     one_liner(self, "!v brendan")
+        # elif botlib.check_on_own(self.data,"You are a seer"):
+        #     oneliner(self, "I'm Seer")
+        # else:
+        #     pass
             
 if __name__ == "__main__":
     # Create new instance of our bot and run it
