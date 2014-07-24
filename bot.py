@@ -21,7 +21,7 @@ server = sys.argv[2]
 start_channel = '#' + sys.argv[3]
 
 #Game Variables
-active_players = 0
+active_players = {}
 
 
 
@@ -60,15 +60,15 @@ class WolfBot(botlib.Bot):
         botlib.Bot.__actions__(self)
         print self.data
 
-        if botlib.check_on_own(self.data, "!join ") or botlib.check_found(self.data, "!j "):
+        if botlib.check_on_own(self.data, "!join") or botlib.check_on_own(self.data, "!j"):
             active_players[self.get_username()] = True
             one_liner(self,str(active_players));
 
-        if botlib.check_on_own(self.data, "!quit ") or botlib.check_found(self.data, "!q "):
+        if botlib.check_on_own(self.data, "!quit") or botlib.check_on_own(self.data, "!q"):
             active_players[self.get_username()] = False
             one_liner(self,str(active_players));
 
-        if botlib.check_on_own(self.data, "!channel ") or botlib.check_found(self.data, "!c"):
+        if botlib.check_on_own(self.data, "!channel") or botlib.check_on_own(self.data, "!c"):
             channel = self.get_args();
             if len(channel) == 0:
                 one_liner(self,"Please tell me a channel to go in. I'm not psychic you know!")
